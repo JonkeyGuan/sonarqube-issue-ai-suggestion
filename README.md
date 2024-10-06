@@ -12,7 +12,7 @@ This project is inspired by Alessandro-Pang's https://github.com/Alessandro-Pang
 
 ## Note
 
-This project to demonstrate how to use AI automation to fix Sonar Issues. Please do not use it in a production environment directly.
+This project is going to demonstrate how to use AI automation to fix Sonar Issues. Please do not use it in a production environment directly without any enhancement and tests.
 
 ## Dependencies
 
