@@ -180,3 +180,4 @@ venv.bak/
 .env.*.local
 .env.local
 .test.*
+.*local*
