@@ -2,7 +2,7 @@ import importlib
 import os
 
 from adapter.sonarqube import fetch_issues_by_componnent_pr, get_raw_code, get_project_id_by_project_key
-from adapter.gitlab import get_merge_reqeust_diff
+from adapter.gitlab import get_merge_reqeust_diff, comment_to_merge_request
 from utils.helper import extract_sonarqube_issue_message
 
 def run(ai_model: str, project_key: str, merge_request_iid: str) -> str:
@@ -33,5 +33,7 @@ def run(ai_model: str, project_key: str, merge_request_iid: str) -> str:
         
         print(f"ai suggestion:")
         print(f"\n{ai_suggestion}")
+
+        comment_to_merge_request(project, merge_request_iid, ai_suggestion)
 
     return "done"

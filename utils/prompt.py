@@ -7,7 +7,9 @@ def system_prompt() -> str:
     You will need to apply the patch diff to source code first
     You will need to return a section of markdown. If there are multiple modifications, return multiple.
     Your code and instructions must be replaceable according to the start and end lines of your code, and the syntax must be correct.
-    The format is as follows:
+    The format is as follows, please keep 'AI suggestion' portion:
+    ## AI suggestion
+
     ``` detected language
     Suggested Code Here
     ```

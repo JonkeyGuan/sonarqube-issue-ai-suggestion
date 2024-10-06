@@ -30,3 +30,26 @@ def get_merge_reqeust_diff(project_id: str, merge_request_iid: str, file_path: s
         return {f"message: File not found in the merge request: {file_path}"}
     else:
         print(f"Failed to fetch: {response.status_code}, {response.text}")
+
+def comment_to_merge_request(project_id: str, merge_request_iid: str, comment: str) -> str:
+    url = os.getenv('GITLAB_URL')
+    token = os.getenv('GITLAB_TOKEN')
+
+    headers = {
+        "PRIVATE-TOKEN": token,
+        "Content-Type": "application/json"
+    }
+    
+    data = {
+        "body": comment
+    }
+    tls_verify = os.getenv('GITLAB_TLS_VERIFY', 'True').lower() == 'true'
+    
+    api_endpoint = f"{url}/api/v4/projects/{project_id}/merge_requests/{merge_request_iid}/notes"
+
+    response = requests.post(api_endpoint, headers=headers, verify=tls_verify, json=data)
+
+    if response.status_code == 201:
+        print("Comment added successfully!")
+    else:
+        print(f"Error: {response.status_code} - {response.text}")
