@@ -5,7 +5,7 @@ from utils.prompt import format_prompt, system_prompt
 
 def request_chatgpt(prompt: str) -> str:
     api_key = os.getenv('OPENAI_API_KEY')
-    model = os.geten('OPENAI_AI_MODEL')
+    model = os.getenv('OPENAI_AI_MODEL')
 
     headers = {
         'Content-Type': 'application/json',
@@ -31,6 +31,6 @@ def request_chatgpt(prompt: str) -> str:
     return response.json()
 
 def run_ai(source_code: str, change: str, sonar_msg: str) -> str:
-    prompt = format_prompt(source_code, sonar_msg)
+    prompt = format_prompt(source_code, change, sonar_msg)
     response = request_chatgpt(prompt)
     return response['choices'][0]['message']['content']
